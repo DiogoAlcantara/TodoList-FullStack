@@ -1,12 +1,14 @@
 const express = require("express");
+
+const router = express.Router();
+
 const tasksController = require("./controllers/tasksController");
 const tasksMiddleware = require("./middlewares/tasksMiddleware");
-const router = express.Router();
 
 router.get("/tasks", tasksController.getAll);
 router.post(
   "/tasks",
-  tasksMiddleware.validateFieldStatus,
+  tasksMiddleware.validateFieldTitle,
   tasksController.createTask
 );
 router.delete("/tasks/:id", tasksController.deleteTask);
